@@ -51,6 +51,19 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  async function toggleTodo(id) {
+    try {
+      const response = await fetch(`/api/todos/${id}`, {
+        method: 'PUT',
+      });
+      if (response.ok) {
+        loadTodos();
+      }
+    } catch (error) {
+      console.error('Error toggling todo:', error);
+    }
+  }
+
   async function deleteTodo(id) {
     try {
       const response = await fetch(`/api/todos/${id}`, {
@@ -69,8 +82,10 @@ document.addEventListener('DOMContentLoaded', () => {
     todos.forEach(todo => {
       const li = document.createElement('li');
       li.dataset.id = todo.id;
+      li.className = todo.completed ? 'completed' : '';
       li.innerHTML = `
         <span>${todo.text}</span>
+        <button class="toggle-btn">${todo.completed ? 'Undo' : 'Complete'}</button>
         <button class="delete-btn">Delete</button>
       `;
       todoList.appendChild(li);

@@ -65,6 +65,34 @@ li {
   align-items: center;
 }
 
+li.completed {
+  text-decoration: line-through;
+  opacity: 0.6;
+}
+
+.delete-btn {
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.toggle-btn {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-right: 5px;
+}
+
+.toggle-btn:hover {
+  background-color: #0056b3;
+}
+
 .delete-btn {
   background-color: #dc3545;
   color: white;

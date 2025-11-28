@@ -23,9 +23,19 @@ app.post('/api/todos', (req, res) => {
   if (!text) {
     return res.status(400).json({ error: 'Text is required' });
   }
-  const newTodo = { id: nextId++, text };
+  const newTodo = { id: nextId++, text, completed: false };
   todos.push(newTodo);
   res.status(201).json(newTodo);
+});
+
+app.put('/api/todos/:id', (req, res) => {
+  const id = parseInt(req.params.id);
+  const todo = todos.find(todo => todo.id === id);
+  if (!todo) {
+    return res.status(404).json({ error: 'Todo not found' });
+  }
+  todo.completed = !todo.completed;
+  res.json(todo);
 });
 
 app.delete('/api/todos/:id', (req, res) => {
